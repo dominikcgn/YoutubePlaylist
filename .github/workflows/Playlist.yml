@@ -21,15 +21,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests yt-dlp
           
+      - name: Setup cookies
+        run: |
+          echo "${{ secrets.YOUTUBE_COOKIES }}" > cookies.txt
+          
       - name: Execute Script
         run: |
           chmod +x autorun.sh
-          ./autorun.sh
+          YDL_OPTS='--cookies cookies.txt' ./autorun.sh
         env:
           PYTHONWARNINGS: "ignore"
-          YDL_EXTRACT_AUDIO_FORMAT: "best"
-          YDL_NO_WARNINGS: "True"
-          YDL_QUIET: "True"
           
       - name: Update Playlist
         run: |
