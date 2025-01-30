@@ -19,18 +19,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests yt-dlp
-          
-      - name: Setup cookies
-        run: |
-          echo "${{ secrets.YOUTUBE_COOKIES }}" > cookies.txt
+          pip install streamlink requests
           
       - name: Execute Script
         run: |
           chmod +x autorun.sh
-          YDL_OPTS='--cookies cookies.txt' ./autorun.sh
-        env:
-          PYTHONWARNINGS: "ignore"
+          ./autorun.sh
           
       - name: Update Playlist
         run: |
