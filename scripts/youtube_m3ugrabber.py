@@ -22,21 +22,28 @@ def grab(url):
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'format': 'best',
+            'format': 'best[ext=m3u8]',  # Spezifisch nach m3u8 Format suchen
             'simulate': True,
-            'skip_download': True
+            'skip_download': True,
+            'extract_flat': False,
+            'force_generic_extractor': False
         }
         
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
-            formats = info.get('formats', [])
-            for f in formats:
-                if f.get('url') and 'm3u8' in f.get('url', '').lower():
-                    print(f['url'])
-                    return
+            if info.get('url'):
+                print(info['url'])
+                return
+            elif info.get('formats'):
+                for f in info['formats']:
+                    if f.get('ext') == 'm3u8':
+                        print(f['url'])
+                        return
                     
     except Exception as e:
+        print(f'# Failed to grab {url}: {str(e)}')
         print('https://raw.githubusercontent.com/benmoose39/YouTube_to_m3u/main/assets/moose_na.m3u')
+
 
 print('#EXTM3U x-tvg-url="https://github.com/botallen/epg/releases/download/latest/epg.xml"')
 print(banner)
