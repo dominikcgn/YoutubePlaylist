@@ -21,17 +21,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests yt-dlp
           
+      - name: Debug directory
+        run: |
+          pwd
+          ls -la
+          
       - name: Setup and run
         run: |
-          cd dominikcgn/YoutubePlaylist
-          cp ../youtube_channel_info.txt .
           chmod +x autorun.sh
           ./autorun.sh
           cat youtube.m3u
           
       - name: Copy and check playlist
         run: |
-          cp dominikcgn/YoutubePlaylist/youtube.m3u ./playlist.m3u
+          cp youtube.m3u ./playlist.m3u
           echo "Content of playlist.m3u:"
           cat playlist.m3u
           
