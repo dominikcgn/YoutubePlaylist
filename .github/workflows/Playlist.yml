@@ -21,10 +21,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests yt-dlp
           
-      - name: Execute Script
+      - name: Check Python Script
+        run: |
+          echo "=== Content of scripts/youtube_m3ugrabber.py ==="
+          cat scripts/youtube_m3ugrabber.py
+          
+      - name: Execute Script with Debug
         run: |
           chmod +x autorun.sh
+          echo "=== Current Directory ==="
+          pwd
+          echo "=== Directory Contents ==="
+          ls -la
+          echo "=== Scripts Directory Contents ==="
+          ls -la scripts/
+          echo "=== Running autorun.sh ==="
           ./autorun.sh
+          echo "=== After Script Execution ==="
+          ls -la
+          echo "=== Content of youtube.m3u ==="
+          cat youtube.m3u
           
       - name: Update Playlist
         run: |
