@@ -1,5 +1,5 @@
 ~~ DO NOT EDIT THE FIRST 2 LINES
-~~ FORMAT: <channel name> | <group name> | <logo> | <tvg-id>
+~~ FORMAT: <channel name> | <youtube url>
 
 Annie Sweetery and Eatery cafe Fisherman's village, Koh Samui | https://www.youtube.com/watch?v=w7BC4rhA_sQ
 Banyan Food Market, Koh Samui | https://www.youtube.com/watch?v=OiIXRUJwgrs
