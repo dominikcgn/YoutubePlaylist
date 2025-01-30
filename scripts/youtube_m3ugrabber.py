@@ -16,15 +16,30 @@ banner = r'''
 def grab(url):
     try:
         video_id = url.split('watch?v=')[1]
-        api_url = f'https://inv.riverside.rocks/api/v1/videos/{video_id}'
-        response = requests.get(api_url, timeout=15)
-        if response.status_code == 200:
-            data = response.json()
-            if 'adaptiveFormats' in data:
-                for format in data['adaptiveFormats']:
-                    if 'url' in format and '.m3u8' in format['url']:
-                        print(format['url'])
-                        return
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        instances = [
+            'https://invidious.snopyta.org',
+            'https://inv.riverside.rocks',
+            'https://invidious.kavin.rocks',
+            'https://vid.puffyan.us'
+        ]
+        
+        for instance in instances:
+            try:
+                api_url = f'{instance}/api/v1/videos/{video_id}'
+                response = requests.get(api_url, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    if 'adaptiveFormats' in data:
+                        for format in data['adaptiveFormats']:
+                            if format.get('type', '').startswith('video/mp4'):
+                                print(format['url'])
+                                return
+            except:
+                continue
+                
         raise Exception("No valid stream URL found")
     except Exception as e:
         print(f'# Failed to grab {url}: {str(e)}')
