@@ -37,7 +37,7 @@ jobs:
             cp youtube.m3u playlist.m3u
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            git add youtube.m3u playlist.m3u
-            git commit -m "Update playlist $(date +%Y-%m-%d_%H-%M-%S)"
-            git push
+            git add -f youtube.m3u playlist.m3u
+            git commit -m "Update playlist $(date +%Y-%m-%d_%H-%M-%S)" || true
+            git push || true
           fi
