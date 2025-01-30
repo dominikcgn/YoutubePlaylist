@@ -16,43 +16,36 @@ jobs:
         with:
           python-version: '3.x'
           
+      - name: Setup Chrome and Cookies
+        uses: browser-actions/setup-chrome@latest
+        
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests yt-dlp
+          pip install requests yt-dlp browser-cookie3
           
-      - name: Check Python Script
-        run: |
-          echo "=== Content of scripts/youtube_m3ugrabber.py ==="
-          cat scripts/youtube_m3ugrabber.py
-          
-      - name: Execute Script with Debug
+      - name: Execute Script with Cookies
         run: |
           chmod +x autorun.sh
-          echo "=== Current Directory ==="
-          pwd
-          echo "=== Directory Contents ==="
-          ls -la
-          echo "=== Scripts Directory Contents ==="
-          ls -la scripts/
-          echo "=== Running autorun.sh ==="
+          echo "Creating cookies.txt file..."
+          python -c "
+          import browser_cookie3
+          import http.cookiejar
+          cookies = browser_cookie3.chrome(domain_name='.youtube.com')
+          cookie_jar = http.cookiejar.MozillaCookieJar('cookies.txt')
+          for cookie in cookies:
+              cookie_jar.set_cookie(cookie)
+          cookie_jar.save()
+          "
           ./autorun.sh
-          echo "=== After Script Execution ==="
-          ls -la
-          echo "=== Content of youtube.m3u ==="
-          cat youtube.m3u
           
       - name: Update Playlist
         run: |
           if [ -f "youtube.m3u" ]; then
             cp youtube.m3u playlist.m3u
-            echo "=== Updated playlist.m3u content ==="
-            cat playlist.m3u
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add youtube.m3u playlist.m3u
             git commit -m "Update playlist $(date +%Y-%m-%d_%H-%M-%S)"
             git push
-          else
-            echo "Error: No youtube.m3u file to copy"
           fi
