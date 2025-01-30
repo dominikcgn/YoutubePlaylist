@@ -22,24 +22,24 @@ def grab(url):
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'format': 'best[ext=m3u8]',  # Spezifisch nach m3u8 Format suchen
-            'simulate': True,
-            'skip_download': True,
-            'extract_flat': False,
-            'force_generic_extractor': False
+            'format': 'best',
+            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'http_headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Accept-Language': 'en-us,en;q=0.5',
+                'Sec-Fetch-Mode': 'navigate'
+            },
+            'nocheckcertificate': True,
+            'extract_flat': True
         }
         
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)
-            if info.get('url'):
+            if info and 'url' in info:
                 print(info['url'])
                 return
-            elif info.get('formats'):
-                for f in info['formats']:
-                    if f.get('ext') == 'm3u8':
-                        print(f['url'])
-                        return
-                    
+            
     except Exception as e:
         print(f'# Failed to grab {url}: {str(e)}')
         print('https://raw.githubusercontent.com/benmoose39/YouTube_to_m3u/main/assets/moose_na.m3u')
