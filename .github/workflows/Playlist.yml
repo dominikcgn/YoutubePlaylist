@@ -11,15 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Debug Environment
+      - name: Check Critical Files
         run: |
-          echo "=== Current Directory Structure ==="
-          pwd
-          ls -la
-          echo ""
-          echo "=== Repository Contents ==="
-          find . -type f -name "*.*"
-          
+          echo "=== Content of autorun.sh ==="
+          cat autorun.sh
+          echo -e "\n=== Content of youtube_channel_info.txt ==="
+          cat youtube_channel_info.txt
+          echo -e "\n=== Content of youtube.m3u ==="
+          cat youtube.m3u
+          echo -e "\n=== Content of playlist.m3u ==="
+          cat playlist.m3u
+      
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -30,40 +32,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests yt-dlp
           
-      - name: Check Script Content
-        run: |
-          echo "=== Content of autorun.sh ==="
-          cat autorun.sh || echo "autorun.sh not found"
-          echo ""
-          echo "=== Content of youtube_channel_info.txt ==="
-          cat youtube_channel_info.txt || echo "youtube_channel_info.txt not found"
-          
       - name: Execute Script
         run: |
-          if [ -f "autorun.sh" ]; then
-            chmod +x autorun.sh
-            ./autorun.sh
-            echo "=== Directory after script execution ==="
-            ls -la
-          else
-            echo "autorun.sh not found"
-          fi
-          
-      - name: Check Generated Files
-        run: |
-          echo "=== Looking for youtube.m3u ==="
-          find . -name "youtube.m3u" || echo "No youtube.m3u found"
-          if [ -f "youtube.m3u" ]; then
-            echo "=== Content of youtube.m3u ==="
-            cat youtube.m3u
-          fi
+          chmod +x autorun.sh
+          ./autorun.sh
           
       - name: Update Playlist
-        if: always()
         run: |
           if [ -f "youtube.m3u" ]; then
             cp youtube.m3u playlist.m3u
-            echo "=== Final playlist.m3u content ==="
+            echo "=== Updated playlist.m3u content ==="
             cat playlist.m3u
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
