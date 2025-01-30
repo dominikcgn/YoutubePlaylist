@@ -1,5 +1,38 @@
 ~~ DO NOT EDIT THE FIRST 2 LINES
 ~~ FORMAT: <channel name> | <group name> | <logo> | <tvg-id>
 
-24 News Malayalam | Malayalam | https://www.twentyfournews.com/wp-content/themes/nextline_v3/images/logo-new.png |
-https://www.youtube.com/c/24OnLive/live
+Annie Sweetery and Eatery cafe Fisherman's village, Koh Samui | https://www.youtube.com/watch?v=w7BC4rhA_sQ
+Banyan Food Market, Koh Samui | https://www.youtube.com/watch?v=OiIXRUJwgrs
+Banyan Tree Samui Live Stream, Koh Samui | https://www.youtube.com/watch?v=wP6hpWgPJ98
+Baobab Cam, Lamai, Koh Samui | https://www.youtube.com/watch?v=8gLq1Ss0PQM
+Bay Beach Resort Xtra, Choeng Mon Beach, Koh Samui | https://www.youtube.com/watch?v=LZSrqZ562Po
+Bay Beach Resort, Choeng Mon Beach, Koh Samui | https://www.youtube.com/watch?v=-VzKL9oeJCI
+Beach Live Stream, House of Sanskara, Koh Phangan | https://www.youtube.com/watch?v=1nVFCfRlqRo
+Bondi Aussie Bar & Grill, Chaweng, Koh Samui | https://www.youtube.com/watch?v=VR-x3HdhKLQ
+Bondi Aussie Bar & Grill, Lamai, Koh Samui | https://www.youtube.com/watch?v=w47yvCftkWQ
+Crystal Bay Beach Resort, Lamai, Koh Samui | https://www.youtube.com/watch?v=Fw9hgttWzIg
+Crystal Bay Yacht Club, Lamai, Koh Samui | https://www.youtube.com/watch?v=5FNI26lPfgE
+El Gaucho, Fisherman's Village, Bophut, Koh Samui | https://www.youtube.com/watch?v=FyFAqPHBKiQ
+El Gaucho, Soi 19, Sukhumvit Road, Bangkok | https://www.youtube.com/watch?v=Q71sLS8h9a4
+Famous "The Best Pancake Man" | Chaweng | https://www.youtube.com/watch?v=e9T0L_POAOk
+FitKoh Livestream, Koh Samui | https://www.youtube.com/watch?v=RmP5eN7gQ6A
+Floating Lotus Indian Resto-Bar, Bangrak, Koh Samui | https://www.youtube.com/watch?v=QZCGxDcVLBU
+Henry Africa's Bar & Café, Soi Green Mango, Koh Samui | https://www.youtube.com/watch?v=3vEYpK3KUW4
+Hush Bar, Soi Green Mango, Chaweng, Koh Samui | https://www.youtube.com/watch?v=DwKCna1mumk
+Jimmy Woo's Chaweng, Soi Green Mango, Koh Samui | https://www.youtube.com/watch?v=j4D0N8Pevwg
+Kaif Sauna, Chaweng, Koh Samui | https://www.youtube.com/watch?v=oWSgX3Xprvo
+Lost Beach Bar & Restaurant Chaweng | https://www.youtube.com/watch?v=nlW5b22XgPs
+Lost beach bar and Restaurant, Chaweng beach, Koh Samui | https://www.youtube.com/watch?v=Yy3DXIMBqiY
+Moo Deng Live | https://www.youtube.com/watch?v=ppwJrBKzGNs
+Piri Piri Mediterranean Bar & Grill, Lamai, Koh Samui | https://www.youtube.com/watch?v=0ig7JpIKe-A
+Royal Muang Samui Villas, Choeng Mon beach, Koh Samui | https://www.youtube.com/watch?v=yjjGE5Nq7AE
+Samui Pier Beach Front Resort Cam#1, Bangrak, Koh Samui | https://www.youtube.com/watch?v=OBdO1luAmVw
+Samui Pier Beach Front Resort Cam#2, Bangrak, Koh Samui | https://www.youtube.com/watch?v=jrYuqZmrV-4
+Secret Garden, Big Buddha Beach, Koh Samui | https://www.youtube.com/watch?v=P_zJwpM2g68
+Soi Buakhao, Pattaya | https://www.youtube.com/watch?v=YzSNhddy5QY
+Soi Green Mango Cam, Chaweng, Koh Samui | https://www.youtube.com/watch?v=yFgVmioYkys
+Teddy Weed beach club, Lamai, Koh Samui | https://www.youtube.com/watch?v=fSrkne_OGOE
+The Shack, Fisherman's Village, Koh Samui | https://www.youtube.com/watch?v=OFVpXuZOlPc
+The Sunset bar and restaurant, Bang Rak beach, Koh Samui | https://www.youtube.com/watch?v=n-ZUSmT74-g
+Zeze Mediterranean food restaurant, Chaweng, Koh Samui | https://www.youtube.com/watch?v=2TLnBhOWD2M
+Zoo Cafe, Koh Phangan · Feed the Fish LIVE! | https://www.youtube.com/watch?v=cnaqZIBbVzA
