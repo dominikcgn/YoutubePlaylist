@@ -21,27 +21,42 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests yt-dlp
           
-      - name: Debug directory
+      - name: Check files and permissions
         run: |
+          echo "Current directory:"
           pwd
+          echo "Directory contents:"
           ls -la
+          echo "Content of youtube_channel_info.txt:"
+          cat youtube_channel_info.txt
+          echo "Checking autorun.sh:"
+          ls -l autorun.sh
           
       - name: Setup and run
         run: |
           chmod +x autorun.sh
           ./autorun.sh
-          cat youtube.m3u
+          echo "Generated playlist content:"
+          cat youtube.m3u || echo "youtube.m3u not created"
           
       - name: Copy and check playlist
         run: |
-          cp youtube.m3u ./playlist.m3u
-          echo "Content of playlist.m3u:"
-          cat playlist.m3u
+          if [ -f "youtube.m3u" ]; then
+            cp youtube.m3u playlist.m3u
+            echo "Content of playlist.m3u:"
+            cat playlist.m3u
+          else
+            echo "Error: youtube.m3u not found"
+          fi
           
       - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -f playlist.m3u
-          git commit -m "Update playlist" || exit 0
-          git push
+          if [ -f "playlist.m3u" ]; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add -f playlist.m3u
+            git commit -m "Update playlist" || echo "No changes to commit"
+            git push
+          else
+            echo "Error: playlist.m3u not found"
+          fi
