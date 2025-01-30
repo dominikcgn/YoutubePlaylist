@@ -23,7 +23,7 @@ jobs:
           
       - name: Setup and run
         run: |
-          cd YouTubePlaylist
+          cd YoutubePlaylist
           cp ../youtube_channel_info.txt .
           chmod +x autorun.sh
           ./autorun.sh
@@ -31,7 +31,7 @@ jobs:
           
       - name: Copy and check playlist
         run: |
-          cp YouTubePlaylist/youtube.m3u ./playlist.m3u
+          cp YoutubePlaylist/youtube.m3u ./playlist.m3u
           echo "Content of playlist.m3u:"
           cat playlist.m3u
           
