@@ -2,7 +2,7 @@ name: Update YouTube Playlist
 
 on:
   schedule:
-    - cron: '0 */4 * * *'  # Läuft alle 4 Stunden
+    - cron: '0 */4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -16,24 +16,31 @@ jobs:
         with:
           python-version: '3.x'
           
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests yt-dlp
+          
       - name: Clone YouTube_to_m3u
         run: |
-          git clone https://github.com/benmoose39/YouTube_to_m3u.git
+          git clone https://github.com/dominikcgn/YouTubePlaylist.git
           
-      - name: Setup youtube_channel_info.txt
+      - name: Setup and run
         run: |
-          cd YouTube_to_m3u
-          echo "Lost Beach Bar & Restaurant Chaweng | https://www.youtube.com/watch?v=nlW5b22XgPs" > youtube_channel_info.txt
+          cd YouTubePlaylist
+          cp ../youtube_channel_info.txt .
           chmod +x autorun.sh
-          
-      - name: Generate playlist
-        run: |
-          cd YouTube_to_m3u
           ./autorun.sh
+          cat youtube.m3u
           
-      - name: Move and commit playlist
+      - name: Copy and check playlist
         run: |
-          cp YouTube_to_m3u/youtube.m3u ./playlist.m3u
+          cp YouTubePlaylist/youtube.m3u ./playlist.m3u
+          echo "Content of playlist.m3u:"
+          cat playlist.m3u
+          
+      - name: Commit changes
+        run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -f playlist.m3u
