@@ -11,6 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Debug Environment
+        run: |
+          echo "=== Current Directory Structure ==="
+          pwd
+          ls -la
+          echo ""
+          echo "=== Repository Contents ==="
+          find . -type f -name "*.*"
+          
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -21,42 +30,46 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests yt-dlp
           
-      - name: Check files and permissions
+      - name: Check Script Content
         run: |
-          echo "Current directory:"
-          pwd
-          echo "Directory contents:"
-          ls -la
-          echo "Content of youtube_channel_info.txt:"
-          cat youtube_channel_info.txt
-          echo "Checking autorun.sh:"
-          ls -l autorun.sh
+          echo "=== Content of autorun.sh ==="
+          cat autorun.sh || echo "autorun.sh not found"
+          echo ""
+          echo "=== Content of youtube_channel_info.txt ==="
+          cat youtube_channel_info.txt || echo "youtube_channel_info.txt not found"
           
-      - name: Setup and run
+      - name: Execute Script
         run: |
-          chmod +x autorun.sh
-          ./autorun.sh
-          echo "Generated playlist content:"
-          cat youtube.m3u || echo "youtube.m3u not created"
+          if [ -f "autorun.sh" ]; then
+            chmod +x autorun.sh
+            ./autorun.sh
+            echo "=== Directory after script execution ==="
+            ls -la
+          else
+            echo "autorun.sh not found"
+          fi
           
-      - name: Copy and check playlist
+      - name: Check Generated Files
+        run: |
+          echo "=== Looking for youtube.m3u ==="
+          find . -name "youtube.m3u" || echo "No youtube.m3u found"
+          if [ -f "youtube.m3u" ]; then
+            echo "=== Content of youtube.m3u ==="
+            cat youtube.m3u
+          fi
+          
+      - name: Update Playlist
+        if: always()
         run: |
           if [ -f "youtube.m3u" ]; then
             cp youtube.m3u playlist.m3u
-            echo "Content of playlist.m3u:"
+            echo "=== Final playlist.m3u content ==="
             cat playlist.m3u
-          else
-            echo "Error: youtube.m3u not found"
-          fi
-          
-      - name: Commit changes
-        run: |
-          if [ -f "playlist.m3u" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add -f playlist.m3u
-            git commit -m "Update playlist" || echo "No changes to commit"
+            git commit -m "Update playlist $(date +%Y-%m-%d_%H-%M-%S)"
             git push
           else
-            echo "Error: playlist.m3u not found"
+            echo "Error: No youtube.m3u file to copy"
           fi
