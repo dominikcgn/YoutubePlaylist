@@ -37,7 +37,7 @@ jobs:
           chmod +x autorun.sh
           ./autorun.sh
           
-      - name: Update Playlist
+       - name: Update Playlist
         run: |
           if [ -f "youtube.m3u" ]; then
             cp youtube.m3u playlist.m3u
@@ -45,9 +45,10 @@ jobs:
             cat playlist.m3u
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
-            git add -f playlist.m3u
+            git add youtube.m3u playlist.m3u
             git commit -m "Update playlist $(date +%Y-%m-%d_%H-%M-%S)"
             git push
           else
             echo "Error: No youtube.m3u file to copy"
           fi
+
